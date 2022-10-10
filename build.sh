@@ -1,26 +1,23 @@
 #!/bin/bash
 # копирование настроек сборки
-#cp_common () {                                                                                                                                                                                                                               
-#    cp ./common/customize-image.sh  ./build/userpatches/
-#    cp ./common/lib.config          ./build/userpatches/
-#    echo "copy common"
+cp_common () {                                                                                                                                                                                                                               
+    cp ./common/customize-image.sh  ./build/userpatches/
+    cp ./common/lib.config          ./build/userpatches/
+    echo "copy common"
     #копирование ПО
-#    if [ -d "./build/userpatches/overlay" ]; then
-#        cp -rf  ./dev/* ./build/userpatches/overlay
-#    fi
-#}  
+    if [ -d "./build/userpatches/overlay" ]; then
+        cp -rf  ./dev/* ./build/userpatches/overlay
+    fi
+}  
 #проверка была ли уже сборка 
-#if [ ! -d "./build/userpatches/" ]; then
-#    cp ./common/customize-image.sh  ./build/config/templates/customize-image.sh.template
-#    mkdir -p ./build/userpatches/overlay
-#fi
-#cp_common
+if [ ! -d "./build/userpatches/" ]; then
+    cp ./common/customize-image.sh  ./build/config/templates/customize-image.sh.template
+    mkdir -p ./build/userpatches/overlay
+fi
+cp_common
 # сборка armbian
 cd ./build/
-#time sudo ./compile.sh  BOARD=radxa-zero BRANCH=current RELEASE=jammy BUILD_MINIMAL=no BUILD_DESKTOP=no KERNEL_ONLY=no KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE=sha,gpg,img
-#    BOARD=rockpi-4b \
-#    BOARD=radxa-zero \
-# ========== select board
+
 OPTION=$(whiptail --title "Menu Dialog" --menu "Choose Board" 15 60 4 \
     "1" "rockpi-4b" \
     "2" "radxa-zero" \
